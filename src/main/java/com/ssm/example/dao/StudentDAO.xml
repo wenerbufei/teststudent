@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.example.dao.StudentDAO">
+
+	<resultMap type="Student" id="studentMap">
+			<id property="id" column="id"/>
+			<result property="name" column="name"/>
+			<result property="gender" column="gender"/>
+			<result property="email" column="email"/>
+			<result property="tel" column="tel"/>
+			<result property="cla" column="cla"/>
+		</resultMap>
+	
+	<!-- parameterType="com.ssm.example.entity.Student" -->
+
+	<select id="findAll" resultType="com.ssm.example.entity.Student" >
+		select * from student
+	</select>
+
+	<insert id="creat" parameterType="com.ssm.example.entity.Student">
+		insert into student(name,gender,email,tel,cla)
+		values (#{name},#{gender},#{email},#{tel},#{cla})
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from student where id= #{id}
+	</delete>
+
+	<!-- 查询一条 -->
+	<select id="get" resultType="com.ssm.example.entity.Student" parameterType="int"> 
+	select * from student where id = #{id} 
+    </select>
+    
+    <update id="update" parameterType="com.ssm.example.entity.Student">
+		update student set id= #{name} , name= #{name} , gender=# {gender} ,
+		email =# {email} , tel =# {tel} where id = #{id}
+		
+	</update>
+ 
+</mapper>
